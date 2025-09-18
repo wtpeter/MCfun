@@ -6,7 +6,7 @@ non-collinear functionals)
 '''
 
 import warnings
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 from .LebedevGrid import MakeAngularGrid
 
@@ -106,7 +106,6 @@ def eval_xc_eff_sf(func, rho_tmz, deriv=1, collinear_samples=200, workers=1):
             r = _eval_xc_sf(func, rho_tmz[...,p0:p1], deriv, collinear_samples)
             results.append(r)
     else:
-        print(collinear_samples)
         executor = ThreadPoolExecutor
 
         with executor(max_workers=workers) as ex:
